@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="e
+pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* Tipos de variáveis:
+            var - escopo global ou local
+            let - escopo de bloco
+            const - escopo de bloco, valor constante
+        */
+       // variáveis são camelCase e case-sensitive
+       /*
+            var message;
+            var Message;
+            são variáveis diferentes
+        */
+       /*
+            var message;
+            var messageOne;
+            são variáveis diferentes
+        */
+        // var declara uma variável global ou local, dependendo do contexto
+        var message;
+        console.log(message); // undefined
+        var message = "Olá mundo!";
+        console.log(message);
+
+        // let declara uma variável com escopo de bloco
+        let message = "Olá mundo com let!";
+        console.log(message);
+        message = "Olá mundo alterado!";
+        console.log(message);
+
+        // const declara uma variável com valor constante
+        const pi = 3.14;
+        console.log(pi);
+
+        //const numeroPi = 3.14;
+        //numeroPi = 3.1415; 
+        // Erro: Assignment to constant variable.
+        
+
+        let nome = "Olá mundo com const!";
+        if (true) {
+            // não tem acesso à variável 'nome' declarada com let fora deste bloco
+            let nome = 'Dentro do IF'; // Escopo de Bloco
+            console.log(nome); // Saída: "Dentro do IF"
+            const idade = 30; // Escopo de Bloco
+            console.log(idade); // Saída: 30
+        }
+        console.log(nome); // Saída: "Olá mundo com const!"
+        // console.log(idade); // Erro: idade não está definida fora do bloco (if)
+        
+    </script>
+</body>
+</html>
