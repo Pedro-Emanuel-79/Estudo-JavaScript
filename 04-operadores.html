@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* Precedência dos operadores aritméticos:
+            1. Parênteses ()
+            2. Expoente **
+            3. Multiplicação *, Divisão / e módulo %
+            4. Adição + e Subtração -
+        */
+        // + Adição
+        // - Subtração
+        // * Multiplicação
+        // / Divisão
+        // % Resto da divisão
+        // ** Exponenciação
+        // ++ Incremento com 1 contador = contador + 1
+        // -- Decremento com 1 contador = contador - 1
+        /*let a = 21;
+        let b = 4;
+        let resultado = a % b; // Resto da divisão
+        console.log("Resto da divisão de", a, "por", b, "é:", resultado); // Saída: 1 */
+
+        let priceProduct = 100;
+        let quantity = 3;
+        let discount =  10;
+        let tax = 15;
+
+        const totalBruto = priceProduct * quantity;
+        const totalComDesconto = totalBruto - (totalBruto * (discount / 100));
+        const totalLiquido = totalComDesconto + (totalComDesconto * (tax / 100));
+
+        console.log("O valor da compra é:", totalLiquido);
+
+
+        /* NOT - tem maior precedência
+           AND - tem precedência média
+           OR - tem menor precedência
+        */
+        // AND = &&
+        /* true && true = true
+           true && false = false
+           false && true = false
+           false && false = false
+        */
+        let usuarioLogado = true;
+        let temPermissao = true;
+
+        if (usuarioLogado && temPermissao) {
+            console.log("Acesso concedido.");
+        } else {
+            console.log("Acesso negado.");
+        }
+
+        // OR = ||
+        /* true || true = true
+           true || false = true
+           false || true = true
+           false || false = false
+        */
+        let diaSemana = ["sabado", "domingo"]; // Sábado e Domingo
+        if (diaSemana.includes("domingo") || diaSemana.includes("sabado")) {
+            // includes() - verifica se um array contém um determinado valor
+            console.log("É fim de semana!");
+        } else {
+            console.log("É dia de semana.");
+        }
+
+        let finalDeSemana = "domingo";
+        if (finalDeSemana === "sabado" || finalDeSemana === "domingo") {
+            console.log("É fim de semana!");
+        } else {
+            console.log("É dia de semana.");
+        }
+
+        let convidado = false;
+        let possuiConvite = true;
+        if (convidado || possuiConvite) {
+            console.log("Entrada permitida.");
+        } else {
+            console.log("Entrada negada.");
+        }
+
+        // NOT = !
+        /* !true = false
+           !false = true
+        */
+        let usuarioLogado2 = true;
+        if (!usuarioLogado2) { // NOT = !
+            console.log("Usuário não está logado.");
+        } else {
+            console.log("Usuário está logado.");
+        }
+
+        let idade = 20;
+        let temConvite = false;
+        let ehConvidadoEspecial = true;
+        if ((idade >= 18 && temConvite) || ehConvidadoEspecial) {
+            console.log("Entrada permitida.");
+        } else {
+            console.log("Entrada negada.");
+        }
+
+        let Convite =  true;
+        let listaVip = true;
+        let listaNegra = false;
+        if ((Convite || listaVip) && !listaNegra) {
+            console.log("Entrada permitida.");
+        } else {
+            console.log("Entrada negada.");
+        }
+    </script>
+</body>
+</html>

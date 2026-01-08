@@ -22,6 +22,95 @@
         console.log(typeof(contador)); // undefined
 
         console.log(null == undefined); // true
-    </script>
+
+        let num = 100;
+        let preco = 12.5;
+        let desconto = 0.2;
+
+        console.log(number.max_value); // Máximo valor representável
+        console.log(number.min_value); // Mínimo valor representável
+        //NaN - Not a Number
+
+        let string = "JavaScript";
+        string[0] = "Y"; // Strings são imutáveis
+        console.log(string); // "JavaScript"
+
+        let str = "Hi";
+        console.log(Boolean(str)); // true
+        let str1 = "";
+        console.log(Boolean(str1)); // false
+        //serve com numeros e objetos tbm
+
+        let s1 = Symbol();
+        //symbol é um tipo primitivo único e imutável
+        let paheView = 9000000032947623n; // BigInt
+        console.log(typeof(paheView)); // "bigint"
+        // BigInt é usado para representar números inteiros muito grandes
+
+        let person = {
+            name: "Pedro",
+            age: 19,
+            email: "pedro@email.com",
+            phone: "11999999999",
+            address: {
+                street: "Rua A",
+                number: 123,
+                city: "São Paulo",
+                state: "SP"
+            }
+        }
+
+        console.log(person); // mostra os dados do objeto "person"
+        console.log(person.name); // mostra o nome "Pedro"
+        console.log(person.address.city); // mostra a cidade dentro do objeto "address" da variavel "person"
+
+        //array são usados para armazenar listas de valores em uma unica variável, armazena qualquer tipo de dado
+        let colors = ["red", "green", "blue"];
+        console.log(colors); // mostra todos os valores do array
+        console.log(colors[0]); // mostra o primeiro valor do array "red"
+        console.log(colors.length); // mostra o tamanho do array (3)
+         
+        colors.push("laranja"); // adiciona um novo valor no final do array
+        console.log(colors);
+
+        colors.pop(); // remove o último valor do array
+        console.log(colors);
+        
+        colors.unshift("amarelo"); // adiciona um novo valor no início do array
+        console.log(colors);
+
+        colors.shift(); // remove o primeiro valor do array
+        console.log(colors);
+
+        let nume = [1, 2, 3, 4, 5];
+        let parte = nume.slice(0, 3); // cria um novo array com os valores do índice 0 ao 2
+        console.log(parte); // [1, 2, 3]
+
+        let frutas = ["maçã", "banana", "laranja"];
+        frutas.splice(1, 1, "uva"); //no indice 1, remove 1 elemento e adiciona "uva"
+        console.log(frutas); // ["maçã", "uva", "laranja"]
+
+        let element = [1, 2, 3];
+        // forEach ele percorre cada elemento do array
+        element.forEach(element => {
+            console.log(element * 1);
+        });
+        // saida será 2, 4, 6
+
+        let map = [1, 2, 3];
+        // map cria um novo array com os resultados da função aplicada a cada elemento
+        let dobrados = map.map((element) => element * 2);
+        console.log(dobrados); // [2, 4, 6]
+
+        let filter = [1, 2, 3, 4, 5, 6];
+        // filter cria um novo array com os elementos que passam no teste da função
+        let pares = filter.filter((element) => element % 2 === 0);// aplica a função para cada elemento do array
+        console.log(pares); // [2, 4, 6]
+
+        let reduce = [1, 2, 3, 4];
+        // reduce aplica uma função a um acumulador e a cada elemento do array (da esquerda para a direita) para reduzi-lo a um único valor
+        let soma = reduce.reduce((acumulador, elemento) => acumulador + elemento, 0); // 0 é o valor inicial do acumulador
+        console.log(soma); // 10   
+    </script> 
 </body>
 </html>
