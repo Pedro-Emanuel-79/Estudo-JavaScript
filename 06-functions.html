@@ -43,11 +43,11 @@
         let comp = prompt("Digite um número: ");
         function comparador(comp) {
             if (comp > 10) {
-                return "Maior que 10";
+                return comp + " Maior que 10";
             } else if (comp < 10) {
-                return "Menor que 10";
+                return comp + " Menor que 10";
             } else {
-                return "Igual a 10";
+                return comp + " Igual a 10";
             }
         }
         console.log(comparador(comp));
@@ -72,6 +72,138 @@
             return message;
         }
         alert("A mensagem é: " + exibirMensagem(message));
+
+        function media(a, b, fn){
+            return fn(a,b) / 2;
+        }
+
+        function adicionar(a, b) {
+            return a + b;
+        }
+        let add = adicionar;
+
+        let resultadoMedia = media(8, 6, add);
+        console.log("A média é: " + resultadoMedia);
+
+
+        function compararPor(propiedade){
+            return function(a, b){
+                let x = a[propiedade];
+                let y = b[propiedade];
+                if (x > y) {
+                    return 1;
+                } else if (x < y) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+        let pessoas = [
+            { nome: "Ana", idade: 25 },
+            { nome: "Bruno", idade: 20 },
+            { nome: "Carla", idade: 30 }
+        ];
+        console.log("Pessoas ordenadas por idade: ");
+        pessoas.sort(compararPor("idade"));
+        console.table(pessoas);
+        //Quando você passa uma função como parâmetro, você não executa a função.
+        //Você dá permissão para outro código executá-la com os dados que ele quiser.
+
+        function cmToIn(comprimento){
+            return comprimento / 2.54;
+        }
+        function inToCm(comprimento){
+            return comprimento * 2.54;
+        }
+        function converterComprimento(comprimento, fn){
+            return fn(comprimento);
+        }
+        let polegadas = converterComprimento(10, cmToIn);
+        console.log("10 cm em polegadas é: " + polegadas);
+        let centimetros = converterComprimento(4, inToCm);
+        console.log("4 polegadas em centímetros é: " + centimetros);
+        //A função converterComprimento recebe um valor e uma função como parâmetros.
+        //Ela chama a função passada (fn) com o valor fornecido (comprimento) e retorna o resultado.
+
+
+        //Como se fosse um switch de funções
+        function adicao(a, b){
+            return a + b;
+        }
+        function subtracao(a, b){
+            return a - b;
+        }
+        function resultity(a, b, fn){
+            return fn(a, b);
+        }
+        console.log("Resultado da adição: " + resultity(10, 5, adicao));
+        console.log("Resultado da subtração: " + resultity(10, 5, subtracao));
+
+        //Funções anônimas (ideias para callbacks)
+        //setTimeout recebe uma função anônima como primeiro parâmetro e o tempo em milissegundos como segundo parâmetro.
+        setTimeout(function() {
+            console.log("Esta mensagem é exibida após 2 segundos.");
+        }, 2000);
+
+        //map recebe uma função anônima que é aplicada a cada elemento do array numbers.
+        const numbers = [1, 2, 3, 4, 5];
+        const doubled = numbers.map(function(number) {
+            return number * 2;
+        });
+        console.log("Números dobrados: ", doubled);
+        const dob = numbers.map(number => number * 2);
+        console.log("Números dobrados com arrow function: ", dob);
+        
+        
+        //Funções arrow (funções de seta)
+        const saudacaoArrow = (nombre) => `Olá, ${nombre}!`;
+        console.log(saudacaoArrow("Maria"));
+        const multiplicar = (x, y) => x * y;
+        console.log("Multiplicação: ", multiplicar(4, 5));
+
+        function person(){
+            this.idade = 0;
+            setInterval(() => {
+                this.idade++;
+                console.log(this.idade);
+            }, 1000);
+        }
+        let p = new person();
+        //Neste exemplo, a função arrow dentro do setInterval mantém o contexto de this da função
+        const dobb = numbers.map(number => number * 2);
+        console.log("Números dobrados com arrow function: ", dobb);
+
+        //Funções auto-invocadas
+        (function() {
+            console.log("Essa função é executada imediatamente");
+        })();
+
+        // Passagem de parâmetros
+        function square(x){
+            x = x * x;
+            return x;
+        }
+        let y = 10;
+        let resultadoSquare = square(y);
+        console.log("O quadrado de", y, "é:", resultadoSquare);
+        console.log(resultadoSquare);//100
+        console.log(y);//10
+
+        let persona = {
+            nome: "Lucas",
+            idade: 28,
+        }
+        let pessoaas = {
+            nome: "Mariana",
+            idade: 32,
+        }
+        function alterarPessoa(obj){
+            obj.idade += 1;
+        }
+        alterarPessoa(pessoaas);
+        console.log("Idade após alteração:", pessoaas.idade); // 33
+
     </script>
 </body>
 </html>
