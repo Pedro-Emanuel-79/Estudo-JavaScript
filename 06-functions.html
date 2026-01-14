@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function saudacao(nome) {
+            return "Olá, " + nome + "!";
+        }
+        console.log(saudacao("Pedro")); // Chamada da função
+
+        let a = parseInt(prompt("Digite um número:"));
+        let b = parseInt(prompt("Digite outro número:"));
+        function soma(a, b) {
+            return a + b;
+        }  
+        alert("A soma é: " + soma(a, b));
+
+        function soma(){
+            let resultado = 0;
+            for(let i = 0; i < arguments.length; i++) {
+                resultado += arguments[i];
+            }
+            return resultado;
+        }
+        console.log(soma(2, 3));
+        console.log(soma(1, 2, 3, 4));
+
+        function imprimirMensagem(mensagem){
+            console.log(mensagem);
+        }
+        imprimirMensagem("Funções em JavaScript!");
+
+        function somaSimples(x, y) {
+            return x + y;
+        }
+        let resultado = somaSimples(5, 10);
+        console.log("Resultado da soma é: ", resultado);
+
+        let comp = prompt("Digite um número: ");
+        function comparador(comp) {
+            if (comp > 10) {
+                return "Maior que 10";
+            } else if (comp < 10) {
+                return "Menor que 10";
+            } else {
+                return "Igual a 10";
+            }
+        }
+        console.log(comparador(comp));
+
+        function compa(a, b){
+            if (a > b) {
+                return a + " é maior que " + b;
+            } else if (a < b) {
+                return a + " é menor que " + b;
+            } else {
+                return a + " é igual a " + b;
+            }
+        }
+        console.log(compa(5, 8));
+
+
+        let message = prompt("Digite uma mensagem: ");
+        function exibirMensagem(message) {
+            while (!message) {
+                message = prompt("Mensagem vazia! Digite uma mensagem válida: ");
+            }
+            return message;
+        }
+        alert("A mensagem é: " + exibirMensagem(message));
+    </script>
+</body>
+</html>

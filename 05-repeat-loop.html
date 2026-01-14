@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*if(condicao) {
+            // bloco de código a ser executado enquanto a condição for verdadeira
+        } else {
+            // bloco de código a ser executado quando a condição for falsa
+        }*/
+
+
+        // Exemplo simples de if-else
+        let idade = 18;
+        let country = "Brasil";
+        if (idade >= 18 && country === "Brasil" || idade >= 16 && country === "EUA") {
+            console.log("Você pode dirigir.");
+        } else {
+            console.log("Você não pode dirigir.");
+        }
+        // Operador ternário
+        idade >= 18 && country === "Brasil" || idade >= 16 && country === "EUA" ? console.log("Você pode dirigir.") : console.log("Você não pode dirigir.");
+        
+        // if, else if, else
+        let peso = 70;
+        let altura = 1.72;
+        let imc = peso / (altura * altura); // Índice de Massa Corporal
+        let resultadoImc;
+
+        if (imc < 18.5) {
+            resultadoImc = "Abaixo do peso";
+        } else if (imc >= 18.5 && imc < 24.9) {
+            resultadoImc = "Peso normal";
+        } else if (imc >= 25 && imc < 29.9) {
+            resultadoImc = "Sobrepeso";
+        } else {
+            resultadoImc = "Obesidade";
+        }
+        console.log("Seu IMC é: " + imc, resultadoImc);
+
+        //switch case
+        let diaSemana = 3;
+        let nomeDia;
+        switch (diaSemana){
+            case 1:
+                nomeDia = "Domingo";
+                break;
+            case 2:
+                nomeDia = "Segunda-feira";
+                break;
+            case 3:
+                nomeDia = "Terça-feira";
+                break;
+            case 4:
+                nomeDia = "Quarta-feira";
+                break;
+            case 5:
+                nomeDia = "Quinta-feira";
+                break;
+            case 6:
+                nomeDia = "Sexta-feira";
+                break;
+            case 7:
+                nomeDia = "Sábado";
+                break;
+            default:
+                nomeDia = "Dia inválido";
+        }
+        console.log("Hoje é: " + nomeDia);
+
+        let contador = 1;
+        while (contador <= 5) {
+            console.log("Contador é: " + contador);
+            contador += 2;
+        }
+        console.log("Fim do loop while.");
+
+        let contadorDo = 4;
+        do {
+            console.log("Contador do-while é: " + contadorDo);
+            contadorDo++;
+        } while (contadorDo <= 5);
+
+        //diferença entre while e do while é que o do while executa o bloco de código pelo menos uma vez, mesmo que a condição seja falsa
+
+         const MIN = 1;
+        const MAX = 10;
+
+        let numeroSecreto = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN;
+        let tentativa = 0;
+        let dica = "";
+        let numero = 0;
+        do {
+            let input = prompt(`Digite um número entre ${MIN} e ${MAX}:\n${dica}`);
+            numero = parseInt(input);
+            tentativa++;
+            if (numero < numeroSecreto) {
+                dica = "Tente um número maior.";
+            } else if (numero > numeroSecreto) {
+                dica = "Tente um número menor.";
+            } else if (numero === numeroSecreto) {
+                alert(`Parabéns! Você acertou o número ${numeroSecreto} em ${tentativa} tentativas.`);
+            } 
+        } while (numero !== numeroSecreto);
+
+
+        //for é usado quando sabemos o número exato de iterações
+        for (let i = 1; i <= 5; i++) {
+            console.log("Contador for é: " + i);
+        }
+        console.log("Fim do loop for.");
+
+
+        //break é usado para sair de um loop antes que ele termine normalmente
+        for (let i = 1; i <= 5; i++) {
+            console.log("Contador for é: " + i);
+            if (i === 3) {
+                console.log("Interrompendo o loop quando i é igual a 3");
+                break; // sai do loop quando i é igual a 3
+            }
+        }
+        console.log("Fim do loop for.");
+
+        //continue é usado para pular uma iteração específica de um loop
+        for (let i = 2; i <= 10; i++) {
+            if( i % 2 === 0) {
+                continue; // pula a iteração quando i é par
+            }
+            console.log("Número ímpar: " + i);
+        }
+
+    </script>
+
+
+</body>
+</html>
