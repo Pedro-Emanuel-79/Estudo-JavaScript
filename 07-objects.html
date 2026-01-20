@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //objeto armazena dados
+        const pessoa = {
+            nome: "Ana",
+            idade: 28,
+            profissao: "Engenheira",
+            saudacao: function() {
+                return "Olá, meu nome é " + this.nome + ", tenho " + this.idade + " anos e sou " + this.profissao + ".";
+            }
+        };
+        console.lofg(pessoa.saudacao());
+
+        const carro = {
+            marca: "Toyota",
+            modelo: "Corolla",
+            ano: 2020,
+            "ano de fabricacao": 2020 //propriedade com espaço no nome
+        };
+        console.log("Marca: " + carro.marca);
+        console.log("Modelo: " + carro.modelo);
+        console.log("Ano: " + carro.ano); //anotação de ponto é mais simples e direta
+        console.log("Ano de Fabricação: " +carro["ano de fabricacao"]);
+
+        const produto = {
+            nome: "Celular",
+            preco: 1500,
+        };
+        console.log("Nome: " + produto.nome);
+        console.log("Preco: " + produto.preco);
+        let preco = parseFloat(prompt("Digite o novo preço do produto: "));
+        produto.preco = preco;
+        console.log("Novo preço do produto: " + produto.preco);
+
+        let excluir = prompt("Deseja excluir o preço do produto? (sim/não)").toLowerCase();
+        function excluirProduto(obj) {
+            if (excluir === "sim") {
+                delete obj.preco;
+                console.log("Preço excluído.");
+            } else if (excluir === "não") {
+                console.log("Preço mantido.");
+            } else {
+                console.log("Resposta inválida.");
+            }
+        }
+        excluirProduto(produto); //tbm da pra fazer dele produto.preco
+        console.log(produto);
+
+        //metodo esta associado ao objeto
+        //funcao pode ser chamada a qaulquer momento
+        function saudacao() {
+            return "Olá! Seja bem-vindo!";
+        }
+        console.log(saudacao());
+        const person = {
+            name: "Pedro",
+            age: 35,
+            saudacao: function() {
+                return "Olá, meu nome é " + this.name + " e tenho " + this.age + " anos.";
+            }
+        }
+        console.log(person.saudacao());
+
+        const car = {
+            marca: "Honda",
+            modelo: "Civic",
+            velocidade: 0,
+            acelerar: function(){
+                this.velocidade += 10;
+                return "Velocidade atual: " + this.velocidade + " km/h";
+            },
+            frear: function(){
+                this.velocidade -= 5;
+                return "Velocidade atual: " + this.velocidade + " km/h";
+            }
+        }
+        console.log(car.velocidade);
+        console.log(car.acelerar());
+        
+
+        const calculadora = {
+            valor: 0,
+            adicionar: function(valor){
+                let num = parseFloat(prompt("Digite um número para adicionar: "));
+                this.valor += num;
+                return this.valor;
+            },
+            subtrair: function(valor){
+                let num = parseFloat(prompt("Digite um número para subtrair: "));
+                this.valor -= num;
+                return this.valor;
+            },
+            multiplicar: function(valor){
+                let num = parseFloat(prompt("Digite um número para multiplicar: "));
+                this.valor *= num;
+                return this.valor;
+            },
+        }
+        console.log(calculadora.adicionar());
+        console.log(calculadora.subtrair());
+        console.log(calculadora.multiplicar());
+
+    </script>
+</body>
+</html>
