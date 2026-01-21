@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //classe é molde pra criar objetos
+        class Pessoa {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+
+            saudacao() {
+                return `Olá, meu nome é ${this.nome}, tenho ${this.idade} anos.`;
+            }
+        }
+
+        const pessoa1 = new Pessoa("Carlos", 30);
+        console.log(pessoa1.saudacao());
+
+        //Getters e Setters
+        class Person {
+            constructor(nome, idade) {
+                this._nome = nome;
+                this._idade = idade;
+            }
+            nome = prompt("Digite o nome: ");
+            get nome() {
+                return this._nome;
+            }
+            set nome(novoNome) {
+                this._nome = novoNome;
+            }
+            get idade() {
+                return this._idade;
+            }
+            set idade(idadeNova) {
+                if (idadeNova < 0) {
+                    console.log("Idade inválida.");
+                } else {
+                    this._idade = idadeNova;
+                }
+            }
+        }
+        const person1 = new Person();
+        console.log("Nome: " + person1.nome);
+        person1.idade = 19;
+        console.log("Idade: " + person1.idade);
+        
+
+        class circulo {
+            constructor(raio) {
+                return this._raio = raio;
+            }
+            get diametro() {
+                return this._raio * 2;
+            }
+            get raio() {
+                return this._raio;
+            }
+            set diametro(valor) {
+                this._raio = valor / 2;
+            }
+        }
+        const c1 = new circulo(10);
+        console.log("Raio: " + c1.diametro); //20
+        c1.diametro = 40; //chama o setter
+        console.log("Raio atual: " + c1.raio); //20
+
+        class retangulo {
+            constructor(largura, altura) {
+                this.largura = largura;
+                this.altura = altura;
+            }
+            area() {
+                return this.largura * this.altura;
+            }
+            get area() {
+                return this.largura * this.altura;
+            }
+        }
+        const r1 = new retangulo(5, 10);
+        console.log("Área do retângulo: " + r1.area); //50
+
+        const Humano = class MinhaClasse {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+            fala() {
+            console.log(`Olá, meu nome é ${this.nome} e tenho ${this.idade} anos.`);
+            }
+        };
+        const humano1 = new Humano("Ana", 25);
+        humano1.fala();
+        
+
+        const fatorial = class {
+            static calcular(n) {
+                if (n === 0 || n === 1) {
+                    return 1;
+                }
+                return n * fatorial.calcular(n - 1);
+            }
+        }
+        console.log("Fatorial de 5: ", fatorial.calcular(5)); //120
+
+        function criarInstancia(classe) {
+            return new classe('Pedro');
+        }
+        const Objeto = criarInstancia(class {
+            constructor(nome) {
+                this.nome = nome;
+            }
+        });
+        console.log(Objeto.nome); // Pedro
+
+        let propName = "idade";
+        let guy = {
+            nome: "João",
+            [propName]: 28,
+        }
+        console.log(guy.idade); // 28
+
+        let chave = "Produto";
+        let valor = "Notebook";
+        let item = {
+            [chave]: valor,
+        }
+        console.log(item[chave]); // Notebook
+
+        class Animal {
+            contructor(mome){
+                this.nome = nome;
+            }
+            falar(){
+                return `${this.nome} faz um barulho.`;
+            }
+        }
+        class Cachorro extends Animal {
+            contructor(nome, raca){
+                super(nome);//chamar o construtor da classe pai
+                this.raca = raca;
+            }
+            falar(){
+                return `${this.nome} é um ${this.raca} e ele late.`;
+            }
+        }
+        const dog = new Cachorro("Rex", "Labrador");
+        console.log(dog.falar()); // Rex é um Labrador e ele late.
+
+        class tchico {
+            constructor(nome, idade){
+                this.nome = nome;
+                this.idade = idade;
+            }
+            apresentar(){
+                return `Olá, meu nome é ${this.nome} e tenho ${this.idade} anos.`;
+            }
+        }
+
+        class estudante extends tchico {
+            constructor(nome, idade, curso){
+                super(nome, idade);
+                this.curso = curso;
+            }
+            apresentar(){
+                super.apresentar();//chama o método apresentar da classe pai (tchico)
+                return ` Estou cursando ${this.curso}.`;
+                //return `${super.apresentar()} Estou cursando ${this.curso}.`;
+            }
+        }
+        const aluno = new estudante("Mariana", 22, "Engenharia");
+        console.log(aluno.apresentar()); //Olá, meu nome é Mariana e tenho 22 anos. Estou cursando Engenharia.
+
+        class SerVivo {
+            constructor(reino){
+                this.reino = reino;
+            }
+        }
+        class animal extends SerVivo {
+            constructor(reino, especie){
+                super('Animalia');//define reino como "animalia"
+                this.nome = nome;
+            }
+        }
+        class mamifero extends animal {
+            constructor(nome, especie){
+                super(nome);//chama o constructor da classe animal
+                this.especie = especie;
+            }
+            detalhes(){
+                return `${this.nome} é um mamífero da espécie ${this.especie} do reino ${this.reino}.`;
+            }
+        }
+        const elefante = new mamifero("Dumbo", "Elefante Africano");
+        console.log(elefante.detalhes()); //Dumbo é um mamífero da espécie Elefante Africano do reino Animalia.
+        
+        function pessoa(nome) {
+            if (!new.target) {
+                throw new Error ("pessoa deve ser chamado com new");
+            }
+            this.nome = nome;
+        }
+        const pessoa2 = new pessoa("Lucas");
+        console.log(pessoa2.nome); // Lucas
+
+        class Animalzinho {
+            contructor() {
+                if (new.target === Animalzinho) {
+                    throw new Error("Animalzinho é uma classe abstrata e não pode ser instanciada diretamente.");
+                }
+                return 'constructor da classe animalzinho chamado';
+            }
+        }
+        class gato extends Animalzinho {
+            constructor() {
+                super();
+                return 'contructor da classe gato chamado';
+            }
+        }
+        //new.target é forçar a criação de instâncias de classes ou subclasses específicas
+        //const animalzinho = new Animalzinho(); // Erro: Animalzinho é uma classe abstrata e não pode ser instanciada diretamente.
+        const felix = new gato();
+        console.log(felix); // contructor da classe gato chamado
+
+        //metodos estáticos servem para definir funções que pertencem à classe em si, e não às instâncias da classe
+        class calculadora {
+            static somar(a, b){
+                return a + b;
+            }
+            static subtrair(a, b){
+                return a - b;
+            }
+        }
+        console.log("Soma: " + calculadora.somar(10, 5)); //15
+        console.log("Subtração: " + calculadora.subtrair(10, 5)); //
+
+        class Conversor {
+            static taxaDolarParaReal = 5.25;
+
+            static converterDolarParaReal(valorDolar){
+                return valorDolar * Conversor.taxaDolarParaReal
+            }
+        }
+        console.log(Conversor.converterDolarParaReal(100)); //525
+
+        class Car {
+            constructor(marca, modelo){
+                this.marca = marca;
+                this.modelo = modelo;
+            }
+            static criarCarroPadrao() {
+                return new Car("Toyota", "Corolla");
+            }
+            detalharCarro(){
+                console.log(`${this.marca} ${this.modelo}`);
+            }
+        }
+        const carro = Car.criarCarroPadrao();
+        console.log(`Carro padrão: ${carro.marca} ${carro.modelo}`); //Carro padrão: Toyota Corolla
+        carro.detalharCarro(); //Toyota Corolla
+
+        class animals {
+            static tipo() {
+                return "Animal";
+            }
+        }
+        class cachorro extends animals {
+            static tipo() {
+                return super.tipo() + " - Cachorro";
+            }
+        }
+        console.log(cachorro.tipo()); // Animal - Cachorro
+        console.log(animals.tipo()); // Animal
+        
+        //propiedades estaticas
+        class configuracao {
+            static versao = "1.0.0";
+            static nomeApp = "MeuApp";
+
+            static mostrarDetalhes() {
+                return `${configuracao.nomeApp} - Versão: ${configuracao.versao}`;
+            }
+        }
+        //classe.propiedade
+        console.log(configuracao.mostrarDetalhes()); // MeuApp - Versão: 1.0.0
+
+        class usuario {
+            static name = "Pedro";
+            static idade = 30;
+
+            static detalhesUsuario() {
+                return `Nome: ${usuario.name}, Idade: ${usuario.idade}`;
+            }
+        }
+        class trabalho extends usuario {
+            static profissao = "Engenheiro";
+
+            static detalhesUsuario() {
+                return `${super.detalhesUsuario()}, Profissão: ${trabalho.profissao}`;
+            }
+        }
+        console.log(usuario.detalhesUsuario()); // Nome: Pedro, Idade: 30
+        console.log(trabalho.detalhesUsuario()); // Nome: Pedro, Idade: 30, Profissão: Engenheiro
+        console.log(trabalho.name); // Pedro //herdado de usuario
+        //super para acessar metodos estaticos da classe pai
+        class users {
+            static contador = 0;
+
+            constructor(nome) {
+                this.nome = nome;
+                users.contador += 1;
+            }
+        }
+        const u1 = new users("Ana");
+        const u2 = new users("Bruno");
+        console.log("Número de usuários criados: " + users.contador); //2
+
+        class animalzao {
+            static reino = "Animalia";
+        }
+        class gato extends animalzao {
+            static especie = "Felis catus";
+            static detalhes() {
+                return `Reino: ${super.reino}, Espécie: ${gato.especie}`;
+            }   
+        }
+        console.log(gato.reino); // Animalia
+        console.log(gato.especie); // Felis catus
+        console.log(animalzao.especie); // undefined
+        console.log(gato.detalhes()); // Reino: Animalia, Espécie: Felis catus
+
+        //campos privados só pode ser usado dentro da classe onde é definida
+        class Banco {
+            #saldo = 0;
+            constructor(titular) {
+                this.titular = titular;
+            }
+            depositar(valor){
+                if (valor > 0) {
+                    this.#saldo += valor;
+                    console.log(`Depósito de R$${valor} realizado. Saldo atual: R$${this.#saldo}`);
+                } else {
+                    console.log("Valor de depósito inválido.");
+                }
+            }
+            sacar(valor){
+                if (valor > 0 && valor <= this.#saldo) {
+                 this.#saldo -= valor;
+                }
+            }
+            mostrarSaldo(){
+                return this.#saldo;
+            }
+        }
+        const conta = new Banco("Marcos");
+        conta.depositar(500); // Depósito de R$500 realizado. Saldo atual: R$500
+        conta.sacar(200);
+        console.log(`Saldo final: R$${conta.mostrarSaldo()}`); // Saldo final: R$300
+
+        class veiculo {
+            #identificacao;
+            contructor(id){
+                this.#identificacao = id;
+            }
+            getIdentificacao(){
+                return this.#identificacao;
+            }
+        }
+        class moto extends veiculo {
+            contructor(id, modelo){
+                super(id);
+                this.modelo = modelo;
+            }
+        }
+        const minhaMoto = new moto("MOTO123", "Harley Davidson");
+        console.log("Identificação da moto: " + minhaMoto.getIdentificacao()); // Identificação da moto: MOTO123
+        //console.log(carro.#identificacao); // Erro: Propriedade privada
+
+        //metodos privados
+        class segredo {
+            #mensagemSecreta(){
+                return "Esta é uma mensagem secreta!";
+            }
+            revelarSegredo(){
+                return this.#mensagemSecreta();
+            }
+        }
+        const s = new segredo();
+        console.log(s.revelarSegredo()); // Esta é uma mensagem secreta!
+
+        class contaBanco {
+            #saldo = 0;
+            constructor(titular) {
+                this.titular = titular;
+            }
+            depositar(valor){
+                if (valor > 0) {
+                    this.#saldo += valor;
+                    this.#logOperacao(`Depósito realizado.`, valor);
+                } else {
+                    console.log("Valor de depósito inválido.");
+                }
+            }
+            sacar(valor){
+                if (valor > 0 && valor <= this.#saldo) {
+                    this.#saldo -= valor;
+                    this.#logOperacao(`Saque realizado.`, valor);
+                }
+            }
+            mostrarSaldo(){
+                return this.#saldo;
+            }
+            #logOperacao(operacao, valor){ //metodo privado
+                console.log(`${operacao} Valor: R$${valor}. Saldo atual: R$${this.#saldo}`);
+            }
+        }
+        const minhaConta = new contaBanco("Lucas");
+        minhaConta.depositar(1000); // Depósito realizado. Valor: R$1000. Saldo atual: R$1000
+        minhaConta.sacar(300); // Saque realizado. Valor: R$300.
+        console.log(`Saldo final: R$${minhaConta.mostrarSaldo()}`); // Saldo final: R$700
+    </script>
+</body>
+</html>

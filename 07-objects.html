@@ -107,6 +107,75 @@
         console.log(calculadora.subtrair());
         console.log(calculadora.multiplicar());
 
+        const pessoaES6 = {
+            nome: "Carlos",
+            falar(){
+                return `Olá, meu nome é ${this.nome}.`;
+            }
+        }
+        console.log(pessoaES6.falar());
+
+        const animal = {
+            tipo: "Vertebrado",
+            movimentar(){
+                return `O animal está se movendo.`;
+            }
+        };
+
+        const cachorro = {
+            nome: "Rex",
+        };
+
+        cachorro.__proto__ = animal; //definindo protótipo //ligando cachorro ao animal
+        console.log(cachorro.tipo); //herdado de animal
+        console.log(cachorro.movimentar()); //herdado de animal
+
+        const ani = {
+            especie: "Animal",
+            fazerSom(){
+                return "Som genérico de animal.";
+            }
+        };
+
+        const mamifero = {
+            especie: "Mamífero",
+            __proto__: ani,
+            temPelos: true,
+        };
+
+        const dog = {
+            __proto__: mamifero,
+            nome: "Buddy",
+            fazerSom(){
+                return "Latido";
+            }
+        };
+        console.log(dog.especie); //herdado de mamifero e mamifero herdou de ani
+        console.log(dog.temPelos); //herdado de mamifero
+        dog.fazerSom(); //método próprio
+        ani.fazerSom(); //método de ani
+
+        //função construtora
+        function Animal(tipo){
+            this.tipo = tipo;
+        }
+        Animal.prototype.fazerSom = function(){
+            return "Som de " + this.tipo;
+        };
+        const gato = new Animal("Gato");
+        console.log(gato.tipo);
+        console.log(gato.fazerSom());
+        //o new cria um novo objeto baseado na função construtora e liga o protótipo
+
+        //Object.create serve para criar um novo objeto com um protótipo específico
+        const felino = {
+            FazerSom: function(){
+                return "Som de felino";
+            }
+        };
+        const leao = Object.create(felino);//leao tem felino como protótipo
+        leao.nome = "Leão";
+        console.log(leao.fazerSom());
     </script>
 </body>
 </html>
