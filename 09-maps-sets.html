@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //O map permite que qualquer tipo de dado seja usado como chave
+        //O Set é uma coleção de valores únicos, ou seja, não permite valores duplicados. Ele é útil para armazenar uma lista de itens sem se preocupar com a ordem ou a duplicação.
+        const map =  new Map();
+        map.set('nome', 'João');
+        map.set('idade', 30);
+        const chaves = map.keys(); // Retorna um iterador com as chaves do map
+        const valores = map.values(); // Retorna um iterador com os valores do map
+        console.log(chaves); // MapIterator {"nome", "idade"}
+        console.log([...valores]); // ["João", 30]
+
+        //Metodo get() para acessar os valores
+        console.log(map.get('nome')); // João
+        console.log(map.get('idade')); // 30
+        //Metodo has() para verificar se uma chave existe
+        console.log(map.has('nome')); // true
+        console.log(map.has('sobrenome')); // false
+        //Metodo delete() para remover uma chave
+        map.delete('idade');
+        console.log(map.size); // 1
+        //Metodo forEach() para iterar sobre os elementos do map  
+        map.forEach((value, key) => {
+            console.log(`Chave: ${key}, Valor: ${value}`);
+        });
+        //Mesmo resultado usando for...of
+        for (let [key, value] of map) {
+            console.log(`Chave: ${key}, Valor: ${value}`);
+        }
+
+        function contarPalavras(texto) {
+            const mapaDepalavras = new Map();
+            const palavras = texto.split(' ');
+            palavras.forEach(palavra => {
+                const contagem = mapaDepalavras.get(palavra) || 0;
+                mapaDepalavras.set(palavra, contagem + 1);
+            });
+            return mapaDepalavras;
+        }
+        const texto = "Olá mundo! Olá a todos.";
+        const contagem = contarPalavras(texto);
+        console.log(contagem); // Map(4) {"Olá" => 2, "mundo!" => 1, "a" => 1, "todos." => 1}
+
+        //O set é uma coleção de valores únicos, ou seja, não permite valores duplicados. Ele é útil para armazenar uma lista de itens sem se preocupar com a ordem ou a duplicação.
+        const set = new Set();
+        set.add(1);
+        set.add("texto2");
+        set.add({ nome: "João" });
+        /*set.add(1); // Não será adicionado, pois já existe no set
+        console.log(set.size); // 2
+        console.log(set.has(1)); // true
+        set.delete(1);
+        console.log(set.size); // 1
+        console.log(set.has(1)); // false
+        set.clear();
+        console.log(set); // Set(0) {}*/
+        //Percorre o set usando forEach
+        set.forEach(value => {
+            console.log(value);
+        });
+        //Usando for...of para percorrer o set
+        for (let value of set) {
+            console.log(value);
+        }
+        
+        const numeros = [1, 2, 3, 4, 5, 5, 6];
+        const setNumerosUnicos = new Set(numeros);
+        console.log([...setNumerosUnicos]); // [1, 2, 3, 4, 5, 6]
+    </script>
+</body>
+</html>

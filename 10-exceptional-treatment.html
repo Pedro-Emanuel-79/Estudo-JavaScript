@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*try {
+            //código que pode causar erro
+        } catch (erro) {
+            //código para tratar o erro
+        }*/
+
+        try {
+            let resultado = add(10,20);
+            console.log(resultado);
+        } catch (erro) {
+            console.log({name: erro.name, message: erro.message});
+        }
+        console.log("Programa continua...");
+
+        const isValidJSON = (str) => {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch (erro) {
+                return false;
+            }
+        }
+        let valido = isValidJSON('{"nome": "João", "idade": 30}');
+        console.log(valido); // true
+
+        // Finally é ideal para ações que precisam acontecer de qualquer maneira
+        /*try {
+            //código que pode causar erro
+        } catch (erro) {
+            //código para tratar o erro
+        } finally{
+            //código que sempre será executado, independentemente de ocorrer um erro ou não
+        }*/
+
+        let result = 0;
+        try {
+            result = add(10,20);
+        } catch (erro) {
+            console.log({name: erro.name, message: erro.message});
+        } finally {
+            console.log("Resultado final:", result);// Será 0 se ocorrer um erro, ou o resultado da soma se não ocorrer
+        }
+
+
+        //Lançar erros personalizados Throw
+        class NumberError extends Error {
+            constructor(value) {
+                super(`"${value}" não é um número válido.`);
+                this.name = 'NumberError';
+            }
+        }
+
+        function add(a, b) {
+            if (typeof a !== 'number') {
+                throw new NumberError(a);
+            }
+            if (typeof b !== 'number') {
+                throw new NumberError(b);
+            }
+            return a + b;
+        }
+        try {
+            let resultado = add(10, "Pedro");
+            console.log(resultado);
+        } catch (erro) {
+            console.log(erro.name + ': ' + erro.message);
+        }
+        console.log("Programa continua...");
+        
+    </script>
+</body>
+</html>
