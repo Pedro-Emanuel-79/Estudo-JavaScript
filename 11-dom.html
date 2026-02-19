@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaScript DOM</title>
+    <style>
+        .destaque {
+            background-color: black;
+            color: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    // DOM - Document Object Model
+    // O DOM é uma representação em árvore de um documento HTML ou XML, onde cada elemento é um nó na árvore. 
+    // Ele permite que os desenvolvedores acessem e manipulem o conteúdo, estrutura e estilo de uma página web usando JavaScript.
+    <p id="helloDOM">Hello DOM!</p>
+    <p>Segundo parágrafo</p>
+    <p>Terceiro parágrafo</p>
+
+    <form>
+        <input type="text" name="usuario" value="Pedro">
+        <input type="text" name="usuario" value="Mariana">
+    </form>
+
+    <div class="destaque">Primeiro destaque</div>
+    <div class="destaque">Segundo destaque</div>
+
+    <div id="mainDiv">
+        <p class="note">Esta é uma nota!</p>
+    </div>
+
+    <ul id="menu">
+        <li class="first">Home</li>
+        <li>Products</li>
+        <li class="current">Customer Support</li>
+        <li>careers</li>
+        <li>Investores</li>
+        <li>News</li>
+        <li class="last">About Us</li>
+    </ul>
+    <ul id="first-list">
+        <li>Everest</li>
+        <li>Fuji</li>
+        <li>Kilimnajaro</li>
+    </ul>
+    <ul id="second-list">
+        <li>Karakoram Range</li>
+        <li>Denali</li>
+        <li>Mont Blanc</li>
+    </ul>
+    <div id="nota">
+        JavaScript textContent Demo!
+        <span style="display: none;">Texto Oculto!</span>
+        <!-- Comentário -->
+    </div>
+    <div class="container"></div>
+    <script>
+        let elemento = document.getElementById("helloDOM");
+        console.log(elemento.textContent); // "Hello DOM!"
+        
+        let elementos =  document.getElementsByName("usuario");
+        console.log(elementos[0].value); // "Pedro"
+        console.log(elementos[1].value); // "Mariana"
+
+        let paragrafo = document.getElementsByTagName("p");
+        console.log(paragrafo[0].textContent); // "Hello DOM!"
+        console.log(paragrafo[1].textContent); // "Segundo parágrafo"
+        console.log(paragrafo[2].textContent); // "Terceiro parágrafo"
+
+        let destaques = document.getElementsByClassName("destaque");
+        console.log(destaques[0].textContent); // "Primeiro destaque"
+        console.log(destaques[1].textContent); // "Segundo destaque"
+
+        //querySelector retorna o primeiro elemento que corresponde ao seletor CSS fornecido
+        let primeiroDestaque = document.querySelector(".destaque"); //Se for um id usar o #
+        console.log(primeiroDestaque.textContent); // "Primeiro destaque" 
+        
+        //querySelectorAll retorna todos os elementos que correspondem ao seletor CSS fornecido
+        let todosDestaques = document.querySelectorAll(".destaque");
+        todosDestaques.forEach((destaque) => {
+            console.log(destaque.textContent); // "Primeiro destaque" e "Segundo destaque"
+        });
+
+        //parentNode retorna o elemento pai do nó atual
+        let note = document.querySelector(".note");
+        console.log(note.parentNode); // <div>...</div>
+
+        //childNodes retorna uma coleção de todos os nós filhos de um elemento, incluindo elementos, texto e comentários
+        let content =  document.getElementById("menu");
+        let firstChild = content.firstChild.nodeName; // #text (espaço em branco antes do primeiro <li>)
+        // let firstChild = content.firstElementChild; // <li class="first">Home</li>
+        // let firstChild = content.lastElementChild; // <li class="last">About Us</li>
+        console.log(firstChild); // #text
+
+        // children retorna uma coleção de todos os nós filhos de um elemento, mas apenas os elementos (ignora nós de texto e comentários)
+        let children = content.children;
+        console.log(children);
+
+        // nextSibling retorna o próximo nó irmão do elemento atual, incluindo nós de texto e comentários
+        let current = document.querySelector(".current");
+        let nextSibling = current.nextElementSibling; // <li>careers</li>
+        while (nextSibling) {
+            console.log(nextSibling.textContent); // "careers", "Investores", "News", "About Us"
+            nextSibling = nextSibling.nextElementSibling;
+        }
+
+        // previousSibling retorna o nó irmão anterior do elemento atual, incluindo nós de texto e comentários
+        let previousSibling = current.previousElementSibling; // <li>Products</li>
+        while (previousSibling) {
+            console.log(previousSibling.textContent); // "Products", "Home"
+            previousSibling = previousSibling.previousElementSibling;
+        }
+
+        let getSiblings = function (element) {
+            let siblings = [];
+            if (!element.parentNode) {
+                return siblings; // Retorna um array vazio se o elemento não tiver um nó pai
+            }
+            let sibling = element.parentNode.firstElementChild; // Começa com o primeiro filho do pai
+            while (sibling) {
+                if (sibling.nodeType === 1 && sibling !== element) { // Verifica se é um elemento e não é o próprio elemento
+                    siblings.push(sibling);
+                }
+                sibling = sibling.nextElementSibling; // Move para o próximo irmão
+        }
+        return siblings;
+    }
+        let siblings = getSiblings(document.querySelector(".current"));
+        let siblingText = siblings.map(element => element.innerHTML);
+        console.log(siblingText);
+
+        //Criando e adicionando elementos ao DOM
+        let div = document.createElement("div");
+        div.id = "content";
+        //div.innerHTML = "<p>Olá, sou um novo parágrafo dentro da div!</p>";
+        let paragrafoCreate = document.createElement("p");
+        paragrafoCreate.textContent = "Exmplo de um novo parágrafo dentro da div!";
+        div.appendChild(paragrafoCreate); // Adiciona o parágrafo criado como filho da div
+        document.body.appendChild(div); // Adiciona a nova div ao final do body
+
+        //Adicionando um novo item ao menu usando DOM
+        const menu = document.getElementById("menu");
+        let li = document.createElement("li");
+        li.textContent = "Blog";
+        menu.appendChild(li); // Adiciona o novo item ao final da lista
+
+        function addMenuItem(text) {
+            let li = document.createElement("li");
+            li.textContent = text;
+            menu.appendChild(li);
+            return li; // Retorna o elemento li criado para permitir manipulação posterior
+        }
+        let newItem = addMenuItem("Support");
+
+        //Movendo elementos no DOM
+        const firstList = document.getElementById("first-list");
+        const everestItem = firstList.firstElementChild; // <li>Everest</li>
+        const secondList = document.getElementById("second-list");
+        secondList.appendChild(everestItem); // Move o item "Everest" para a segunda lista
+
+        //textContent x innerText
+        const nota = document.getElementById("nota");
+        console.log(nota.textContent); // "JavaScript textContent Demo!Texto Oculto!" (inclui o texto oculto e ignora o css)
+        //nota.textContent = "Novo texto para o elemento nota!"; // Altera o conteúdo de texto do elemento
+        //console.log(nota.innerText); // "JavaScript textContent Demo!" (ignora o texto oculto e respeita o css)
+
+        let div3 = document.querySelector(".container");
+        div3.innerHTML = "<p>Olá, sou um parágrafo dentro da div container!</p>"; // Adiciona um parágrafo dentro da div usando innerHTML
+        
+        /*
+        let paragrafo = document.createElement("p");
+        paragrafo.textContent = "Olá, sou um parágrafo dentro da div container!";
+        paragrafo.classList.add("destaque"); // Adiciona a classe "destaque" ao parágrafo
+        div.append(paragrafo); // Adiciona o parágrafo criado como filho da div
+        */
+        //São equivalentes, mas innerHTML é mais simples para adicionar conteúdo HTML complexo, 
+        //enquanto textContent é mais seguro para adicionar apenas texto, evitando possíveis vulnerabilidades de segurança como XSS (Cross-Site Scripting).
+
+        // div.innerHTML = "<img src='imagem.jpg' onerror='alert(\"Imagem não encontrada!\")'>"; // Exemplo de vulnerabilidade XSS usando innerHTML
+        let img = document.createElement("img");
+        img.src = "invalid";
+        img.onerror = function() {
+            alert("Imagem não encontrada!");
+        };
+        div.appendChild(img); // Exemplo seguro usando textContent e manipulando o evento onerror do elemento de imagem
+    </script>
+</body>
+</html>
